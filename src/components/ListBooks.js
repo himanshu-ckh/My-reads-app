@@ -3,47 +3,40 @@ import Book from './Book'
 
 class ListBooks extends Component {
 
+/*Currently reading function*/
   BooksOnCRShelf(books, shelf) {
-    const filteredBooks = books.filter((book) => book.shelf === shelf)
-
-    return filteredBooks.map((book) => (
+    const cRBooks = books.filter((book) => book.shelf === shelf)
+    return cRBooks.map((book) => (
       <li key={book.id}>
-        <Book
-          updateBook={this.props.updateBook}
-          book={book}
+        <Book updateBook={this.props.updateBook} book={book}
         />
       </li>
     ))
   }
 
+/* Want to read function*/
   BooksOnWTRShelf(books, shelf) {
-    const filteredBooks = books.filter((book) => book.shelf === shelf)
-
-    return filteredBooks.map((book) => (
+    const wTRBooks = books.filter((book) => book.shelf === shelf)
+    return wTRBooks.map((book) => (
       <li key={book.id}>
-        <Book
-          updateBook={this.props.updateBook}
-          book={book}
-        />
+        <Book updateBook={this.props.updateBook} book={book} />
       </li>
     ))
   }
 
+/*Read function*/
   BooksOnRShelf(books, shelf) {
-    const filteredBooks = books.filter((book) => book.shelf === shelf)
-
-    return filteredBooks.map((book) => (
+    const rBooks = books.filter((book) => book.shelf === shelf)
+    return rBooks.map((book) => (
       <li key={book.id}>
-        <Book
-          updateBook={this.props.updateBook}
-          book={book}
-        />
+        <Book updateBook={this.props.updateBook} book={book} />
       </li>
     ))
   }
 
+/*render to return the bookshelf*/
   render() {
-    const { books } = this.props
+    const {books} = this.props
 
     return (
       <div className="list-books">
@@ -58,7 +51,7 @@ class ListBooks extends Component {
                 </div>
             </div>
             <div className="bookshelf">
-              <h2 className="bookshelf-title">Want to read</h2>
+              <h2 className="bookshelf-title">Want to Read</h2>
                 <div className="bookshelf-books">
                   <ol className="books-grid">
                     {this.BooksOnWTRShelf(books, 'wantToRead')}
