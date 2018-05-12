@@ -30,7 +30,7 @@ class Main extends Component {
 
 	render() {
 		return (
-			<div className="main-page">
+			<div>
 				<Title />
 				<ListBooks books={this.state.books} updateBook={this.updateBook} />
 				<AddBooks />
