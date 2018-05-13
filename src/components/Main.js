@@ -3,7 +3,8 @@ import {Route} from 'react-router-dom'
 import Title from './Title'
 import ListBooks from './ListBooks'
 import AddBooks from './AddBooks'
-import Searchbooks from './SearchBooks'
+import SeaechBooks from './SearchBooks'
+
 import * as BooksAPI from '../BooksAPI'
 
 class Main extends Component {
