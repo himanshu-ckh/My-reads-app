@@ -7,7 +7,7 @@ class SearchBooks extends Component {
   state = {
     query: '',
     searchResultsFound: false,
-    searchResults: []
+    queryBooks: []
   }
 
   updateTerm = query => {
@@ -26,7 +26,7 @@ class SearchBooks extends Component {
         }
         this.setState({
           searchResultsFound: true,
-          searchResults: newbooks
+          queryBooks: newbooks
         });
       } else {
         this.setState({ searchResultsFound: false });
@@ -45,8 +45,8 @@ class SearchBooks extends Component {
         </div>
         <div className="search-books-results">
         <ol className="books-grid">
-            {this.state.searchResults && (
-              this.state.searchResults.map((book) => (
+            {this.state.queryBooks && (
+              this.state.queryBooks.map((book) => (
                 <li key={book.id}>
                   <Book updateBook={this.props.updateBook} book={book} />
                 </li>
