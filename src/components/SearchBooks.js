@@ -1,6 +1,5 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router-dom'
-import PropTypes from 'prop-types'
 import Book from './Book'
 import * as BooksAPI from '../BooksAPI'
 
@@ -17,17 +16,17 @@ class SearchBooks extends Component {
   }
 
   searchBooks = () => {
-    BooksAPI.search(this.state.query).then(books => {
-      if (books &&  books.length > 0) {
+    BooksAPI.search(this.state.query).then(newbooks => {
+      if (newbooks &&  newbooks.length > 0) {
         if (this.props.currentBooks) {
           this.props.currentBooks.forEach(element => {
-            let i = books.findIndex(b => element.id === b.id);
-            books[i] = element;
+            let i = newbooks.findIndex(b => element.id === b.id);
+            newbooks[i] = element;
           });
         }
         this.setState({
           searchResultsFound: true,
-          searchResults: books
+          searchResults: newbooks
         });
       } else {
         this.setState({ searchResultsFound: false });
@@ -49,8 +48,7 @@ class SearchBooks extends Component {
             {this.state.searchResults && (
               this.state.searchResults.map((book) => (
                 <li key={book.id}>
-                  <Book updateBook={this.props.updateBook} book={book}
-                  />
+                  <Book updateBook={this.props.updateBook} book={book} />
                 </li>
               ))
             )}

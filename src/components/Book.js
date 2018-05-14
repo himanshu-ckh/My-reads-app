@@ -1,5 +1,4 @@
 import React from 'react'
-import SearchBooks from './SearchBooks'
 
 function Book (props) {
   const {book} = props
