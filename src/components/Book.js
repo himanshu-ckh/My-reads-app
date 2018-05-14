@@ -1,12 +1,13 @@
 import React from 'react'
+import SearchBooks from './SearchBooks'
 
 function Book (props) {
   const {book} = props
   return (
     <div className="book">
       <div className="book-top">
-        <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}>
-        </div>
+        {book.imageLinks ? <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})`}}></div>
+                : <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(https://books.google.com/googlebooks/images/no_cover_thumb.gif)`}}></div>}
         <div className="book-shelf-changer">
           <select defaultValue={book.shelf} onChange={(e) => {props.updateBook(book, e.target.value)}}>
             <option value="none" disabled>Move to...</option>
@@ -16,11 +17,12 @@ function Book (props) {
             <option value="none">None </option>
           </select>
         </div>
-      </div>
+        </div>
       <div className="book-title">{book.title}</div>
-      {book.authors && (book.authors.join(', '))}
+      <div className="book-authores">{book.authors && (book.authors.join(', '))} </div>
     </div>
   )
 }
 
 export default Book
+
