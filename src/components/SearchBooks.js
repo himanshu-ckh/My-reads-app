@@ -22,11 +22,9 @@ class SearchBooks extends Component {
         if (this.props.currentBooks) {
           this.props.currentBooks.forEach(element => {
             let i = books.findIndex(b => element.id === b.id);
-            books = books.filter((book) => (book.imageLinks))
             books[i] = element;
           });
         }
-
         this.setState({
           searchResultsFound: true,
           searchResults: books
@@ -43,21 +41,21 @@ class SearchBooks extends Component {
         <div className="search-books-bar">
           <Link className="close-search" to="/">Close</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author" value={this.state.query}
-            onChange={event => this.updateTerm(event.target.value)} />
+            <input type="text" placeholder="Search by title or author" value={this.state.query} onChange={event => this.updateTerm(event.target.value)} />
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid">
-            <li>
-              {this.state.searchResultsFound &&
-                <Book
-                  books={this.state.searchResults}
-                  updateBook={(book, shelf) => this.props.onBookShelfChange(book, shelf)}
-                />}
-            </li>
+        <ol className="books-grid">
+            {this.state.searchResults && (
+              this.state.searchResults.map((book) => (
+                <li key={book.id}>
+                  <Book updateBook={this.props.updateBook} book={book}
+                  />
+                </li>
+              ))
+            )}
           </ol>
-          </div>
+        </div>
       </div>
     )
   }
