@@ -3,7 +3,7 @@ import {Route} from 'react-router-dom'
 import Title from './Title'
 import ListBooks from './ListBooks'
 import AddBooks from './AddBooks'
-import SeaechBooks from './SearchBooks'
+import SearchBooks from './SearchBooks'
 
 import * as BooksAPI from '../BooksAPI'
 
@@ -35,7 +35,7 @@ class Main extends Component {
 				<Title />
 				<ListBooks books={this.state.books} updateBook={this.updateBook} />
 				<AddBooks />
-			</div>
+				</div>
 	)
 }
 }
