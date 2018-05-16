@@ -11,28 +11,31 @@ class SearchBooks extends Component {
   }
 
   updateTerm = query => {
-    this.setState({query: query});
-    this.searchBooks();
+    const maxResult = 20;
+    if(query) {
+      BooksAPI.search(query, maxResult).then((result) => {
+        this.searchBooks(result)
+        if(result.error !== 'empty query'){
+          this.setState({queryBooks: result})
+        } else {
+          this.setState({queryBooks: []})
+        }
+      })
+    } else {
+      this.setState({queryBooks: []})
+    }
   }
 
-  searchBooks = () => {
-    BooksAPI.search(this.state.query).then(newbooks => {
-      if (newbooks &&  newbooks.length > 0) {
-        if (this.props.currentBooks) {
-          this.props.currentBooks.forEach(element => {
-            let i = newbooks.findIndex(b => element.id === b.id);
-            newbooks[i] = element;
-          });
+  searchBooks = (values) => {
+    for(let value of values){
+      for(let book of this.props.books) {
+        if(value.id===book.id){
+          value.shelf=book.shelf
         }
-        this.setState({
-          searchResultsFound: true,
-          queryBooks: newbooks
-        });
-      } else {
-        this.setState({ searchResultsFound: false });
       }
-    });
-  };
+    }
+    this.setState({queryBooks: values})
+  }
 
   render() {
     return (
