@@ -6,16 +6,16 @@ import * as BooksAPI from '../BooksAPI'
 class SearchBooks extends Component {
   state = {
     query: '',
-    searchResultsFound: false,
     queryBooks: []
   }
 
   updateTerm = query => {
+    this.setState({query: query.trim()})
     const maxResult = 20;
     if(query) {
       BooksAPI.search(query, maxResult).then((result) => {
         this.searchBooks(result)
-        if(result.error !== 'empty query'){
+        if(result.length>0){
           this.setState({queryBooks: result})
         } else {
           this.setState({queryBooks: []})
@@ -29,7 +29,7 @@ class SearchBooks extends Component {
   searchBooks = (values) => {
     for(let value of values){
       for(let book of this.props.books) {
-        if(value.id===book.id){
+        if(value.id === book.id){
           value.shelf=book.shelf
         }
       }
@@ -43,7 +43,7 @@ class SearchBooks extends Component {
         <div className="search-books-bar">
           <Link className="close-search" to="/">Close</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author" value={this.state.query} onChange={event => this.updateTerm(event.target.value)} />
+            <input type="text" placeholder="Search by title or author"  onChange={event => this.updateTerm(event.target.value)} />
           </div>
         </div>
         <div className="search-books-results">
