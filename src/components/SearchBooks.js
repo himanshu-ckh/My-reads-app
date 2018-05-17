@@ -14,8 +14,8 @@ class SearchBooks extends Component {
     const maxResult = 20;
     if(query) {
       BooksAPI.search(query, maxResult).then((result) => {
-        if(result===" " || (result.error)){
-          this.setState({queryBooks:[]})
+        if(result.length===0 || (result.error)){
+          this.setState({queryBooks: []})
         } else{
         result = this.searchBooks(result)
         this.setState({queryBooks: result})
@@ -24,6 +24,7 @@ class SearchBooks extends Component {
     }
   }
 
+/*default shelf is none and this function will change the shelf of the books*/
   searchBooks = (values) => {
     for(let book of Array.from(values))
     {
