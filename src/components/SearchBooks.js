@@ -14,8 +14,12 @@ class SearchBooks extends Component {
     const maxResult = 20;
     if(query) {
       BooksAPI.search(query, maxResult).then((result) => {
+        if(result===" " || (result.error)){
+          this.setState({queryBooks:[]})
+        } else{
         result = this.searchBooks(result)
         this.setState({queryBooks: result})
+      }
       })
     }
   }
