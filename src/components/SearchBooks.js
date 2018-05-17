@@ -10,24 +10,18 @@ class SearchBooks extends Component {
   }
 
   updateTerm = query => {
-    this.setState({query: query.trim()})
+    this.setState({query: query})
     const maxResult = 20;
     if(query) {
       BooksAPI.search(query, maxResult).then((result) => {
-        this.searchBooks(result)
-        if(result.length>0){
-          this.setState({queryBooks: result})
-        } else {
-          this.setState({queryBooks: []})
-        }
+        result = this.searchBooks(result)
+        this.setState({queryBooks: result})
       })
-    } else {
-      this.setState({queryBooks: []})
     }
   }
 
   searchBooks = (values) => {
-    for(let book of values)
+    for(let book of Array.from(values))
     {
        book.shelf='none'
     }
@@ -38,7 +32,7 @@ class SearchBooks extends Component {
         }
       }
     }
-    this.setState({queryBooks: values})
+    return values
   }
 
   render() {
