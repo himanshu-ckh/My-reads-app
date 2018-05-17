@@ -27,7 +27,11 @@ class SearchBooks extends Component {
   }
 
   searchBooks = (values) => {
-    for(let value of values){
+    for(let book of values)
+    {
+       book.shelf='none'
+    }
+    for(let value of Array.from(values)){
       for(let book of this.props.books) {
         if(value.id === book.id){
           value.shelf=book.shelf
@@ -43,13 +47,12 @@ class SearchBooks extends Component {
         <div className="search-books-bar">
           <Link className="close-search" to="/">Close</Link>
           <div className="search-books-input-wrapper">
-            <input type="text" placeholder="Search by title or author"  onChange={event => this.updateTerm(event.target.value)} />
+            <input type="text" placeholder="Search by title or author" value={this.state.query}  onChange={event => this.updateTerm(event.target.value)} />
           </div>
         </div>
         <div className="search-books-results">
         <ol className="books-grid">
-            {this.state.queryBooks && (
-              this.state.queryBooks.map((book) => (
+            {this.state.queryBooks && ( this.state.queryBooks.map((book) => (
                 <li key={book.id}>
                   <Book updateBook={this.props.updateBook} book={book} />
                 </li>
