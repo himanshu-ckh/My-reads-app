@@ -5,7 +5,7 @@ import Title from './Title'
 
 
 class ListBooks extends Component {
-
+/*all these functions will add the books on the respective shelf*/
 /*Currently reading function*/
   BooksOnCRShelf(books, shelf) {
     const cRBooks = books.filter((book) => book.shelf === shelf)
@@ -17,7 +17,7 @@ class ListBooks extends Component {
     ))
   }
 
-/* Want to read function*/
+/*Want to read function*/
   BooksOnWTRShelf(books, shelf) {
     const wTRBooks = books.filter((book) => book.shelf === shelf)
     return wTRBooks.map((book) => (
@@ -49,6 +49,7 @@ class ListBooks extends Component {
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
                 <div className="bookshelf-books">
+              {/*this will call the function and add the books on currentlyReading shelf*/}
                   <ol className="books-grid">
                     {this.BooksOnCRShelf(books, 'currentlyReading')}
                   </ol>
@@ -57,6 +58,7 @@ class ListBooks extends Component {
             <div className="bookshelf">
               <h2 className="bookshelf-title">Want to Read</h2>
                 <div className="bookshelf-books">
+              {/*this will call the function and add the books on wantToRead shelf*/}
                   <ol className="books-grid">
                     {this.BooksOnWTRShelf(books, 'wantToRead')}
                   </ol>
@@ -65,6 +67,7 @@ class ListBooks extends Component {
             <div className="bookshelf">
               <h2 className="bookshelf-title">Read</h2>
                 <div className="bookshelf-books">
+              {/*this will call the function and add the books on read shelf*/}
                   <ol className="books-grid">
                     {this.BooksOnRShelf(books, 'read')}
                   </ol>
@@ -72,6 +75,7 @@ class ListBooks extends Component {
             </div>
           </div>
         </div>
+      {/* this will create a link to add the books and link to the page of search*/}
         <div className="open-search">
           <Link to='/search'>Add a book</Link>
         </div>

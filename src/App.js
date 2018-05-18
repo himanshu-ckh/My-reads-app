@@ -16,15 +16,14 @@ class BooksApp extends Component {
     })
   }
 
+/* function -->  if the new book is already is not in the shelf then add it to the shelf else set the new shelf and set the new state for the books*/
   updateBook = (book, shelf) => {
-    let newShelfBook = this.state.books.map((b) => {
-      if (b.id === book.id) {
-        b.shelf = shelf
-      }
-      return b
-    })
-    this.setState( {books: newShelfBook} )
-    BooksAPI.update(book, shelf)
+    book.shelf = shelf;
+    BooksAPI.update(book, shelf).then( ()=> {
+      let newBook = this.state.books.filter( (b) => b.id !== book.id)
+      newBook.push(book)
+      this.setState({books: newBook});
+    });
   }
 
 	render() {

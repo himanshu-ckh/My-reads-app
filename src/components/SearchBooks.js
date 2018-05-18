@@ -9,22 +9,7 @@ class SearchBooks extends Component {
     queryBooks: []
   }
 
-  updateTerm = query => {
-    this.setState({query: query})
-    const maxResult = 20;
-    if(query) {
-      BooksAPI.search(query, maxResult).then((result) => {
-        if(result.length===0 || (result.error)){
-          this.setState({queryBooks: []})
-        } else{
-        result = this.searchBooks(result)
-        this.setState({queryBooks: result})
-      }
-      })
-    }
-  }
-
-/*default shelf is none and this function will change the shelf of the books*/
+  /*default shelf is none*/
   searchBooks = (values) => {
     for(let book of Array.from(values))
     {
@@ -39,6 +24,22 @@ class SearchBooks extends Component {
     }
     return values
   }
+
+  updateTerm = query => {
+    this.setState({query: query})
+    const maxResult = 20;
+      BooksAPI.search(query, maxResult).then((result) => {
+        /*if the get an error or the query is erased it will set the new state of the queryBooks to no books*/
+        if(result===undefined || (result.error)){
+          this.setState({queryBooks: []})
+        } else{
+        result = this.searchBooks(result)
+        this.setState({queryBooks: result})
+      }
+      })
+  }
+
+
 
   render() {
     return (
