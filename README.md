@@ -3,7 +3,7 @@
 
 # Start
 1. To start the project clone the directory or download the project.
-2. After that run the command npn install to install all the dependencies.
+2. After that run the command npm install to install all the dependencies.
 3. To start the project run the command npm start
 
 # About
