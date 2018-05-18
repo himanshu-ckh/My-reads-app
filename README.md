@@ -10,3 +10,9 @@
 1. This projects main page contains 3 shelves
 2. We can change the shelves of the book.
 3. There is a search page also and the books we search can also be included in the shelves
+
+# Backend Server
+1. the provided file for backend is BooksAPI.js and contacins methods such as getall(), update(), search()
+
+# Important
+1. The backend server uses a fix set of cached results and limited to particular set of results, which can be found in SEARCH_TERMS.md
