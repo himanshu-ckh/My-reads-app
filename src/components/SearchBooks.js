@@ -4,6 +4,7 @@ import Book from './Book'
 import * as BooksAPI from '../BooksAPI'
 
 class SearchBooks extends Component {
+  /*query will have what the user types in the search bar and queryBooks will be the books that matches the query in the BooksAPI.js*/
   state = {
     query: '',
     queryBooks: []
@@ -27,13 +28,15 @@ class SearchBooks extends Component {
 
   updateTerm = query => {
     this.setState({query: query})
-    const maxResult = 20;
-      BooksAPI.search(query, maxResult).then((result) => {
+    /*Maximum number of books are 20*/
+    const maxnoofBooks = 20;
+      BooksAPI.search(query, maxnoofBooks).then((result) => {
         /*if the get an error or the query is erased it will set the new state of the queryBooks to no books*/
         if(result===undefined || (result.error)){
           this.setState({queryBooks: []})
         } else{
         result = this.searchBooks(result)
+        /*set the state of the queryBooks*/
         this.setState({queryBooks: result})
       }
       })

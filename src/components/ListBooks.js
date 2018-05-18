@@ -5,8 +5,8 @@ import Title from './Title'
 
 
 class ListBooks extends Component {
-/*all these functions will add the books on the respective shelf*/
-/*Currently reading function*/
+/*All these functions will add the books on the respective shelf when the shelf matches with the book shelf it will be added*/
+/*Currently reading books*/
   BooksOnCRShelf(books, shelf) {
     const cRBooks = books.filter((book) => book.shelf === shelf)
     return cRBooks.map((book) => (
@@ -17,7 +17,7 @@ class ListBooks extends Component {
     ))
   }
 
-/*Want to read function*/
+/*Want to read books*/
   BooksOnWTRShelf(books, shelf) {
     const wTRBooks = books.filter((book) => book.shelf === shelf)
     return wTRBooks.map((book) => (
@@ -27,7 +27,7 @@ class ListBooks extends Component {
     ))
   }
 
-/*Read function*/
+/*Read books*/
   BooksOnRShelf(books, shelf) {
     const rBooks = books.filter((book) => book.shelf === shelf)
     return rBooks.map((book) => (

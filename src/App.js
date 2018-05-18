@@ -6,6 +6,7 @@ import ListBooks from './components/ListBooks'
 import * as BooksAPI from './BooksAPI'
 
 class BooksApp extends Component {
+  /*A state of all the books*/
   state = {
 		books: []
 	}
@@ -31,13 +32,14 @@ class BooksApp extends Component {
 		return (
 			<div>
         <Switch>
+        {/*List the book in respective shelf*/}
 				  <Route exact path='/' render={() => (<ListBooks books={this.state.books} updateBook={this.updateBook}/>)}/>
         </Switch>
         <Switch>
+      {/*Search book*/}
         	 <Route path='/search' render={() => (<SearchBooks books={this.state.books} updateBook={this.updateBook}/>)}/>
         </Switch>
 				</div>
-
 	)
 }
 }
